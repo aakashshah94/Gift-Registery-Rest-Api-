@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Testing</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+  <error-code>404</error-code>
+  <location>/errorpage.jsp</location>
+</error-page>
+  <error-page>
+  <error-code>504</error-code>
+  <location>/errorpage.jsp</location>
+</error-page>
+  <error-page>
+  <error-code>501</error-code>
+  <location>/errorpage.jsp</location>
+</error-page>
+
+
+
+<error-page>
+  <exception-type>*</exception-type>
+  <location>/errorpage.jsp</location>
+</error-page>
+  <servlet>
+    <servlet-name>NewClass</servlet-name>
+    <servlet-class>com.testing.NewClass</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewClass</servlet-name>
+    <url-pattern>/log</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetRegi</servlet-name>
+    <servlet-class>com.testing.GetRegi</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetRegi</servlet-name>
+    <url-pattern>/regs</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>CompressingFilter</filter-name>
+    <filter-class>
+       com.planetj.servlet.filter.compression.CompressingFilter
+    </filter-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>compressionThreshold</param-name>
+      <param-value>0</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CompressingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>
